@@ -1,4 +1,4 @@
-# 4Bit-Up-Down-Asynchronous-Reset-Counter-Synthesis
+# EXP4: 4Bit-Up-Down-Asynchronous-Reset-Counter-Synthesis
 
 ## Aim:
 
@@ -19,6 +19,13 @@ Synthesis requires three files as follows,
 ◦ Verilog/VHDL Files (.v or .vhdl or .vhd)
 
 ◦ SDC (Synopsis Design Constraint) File (.sdc)
+
+create_clock -name clk -period 2 -waveform {0 1} [get_ports "clk"]
+set_clock_transition -rise 0.1 [get_clocks "clk"]
+set_clock_transition -fall 0.1 [get_clocks "clk"]
+set_clock_uncertainty 0.01 [get_ports "clk"]
+set_input_delay -max 0.8 [get_ports "rst"] -clock [get_clocks "clk"]
+set_output_delay -max 0.8 [get_ports "count"] -clock [get_clocks "clk"]
 
  ### Step 2 : Creating an SDC File
 
@@ -64,17 +71,21 @@ used.
 • Genus Script file with .tcl file Extension commands are executed one by one to synthesize the netlist.
 
 #### Synthesis RTL Schematic :
+![Screenshot_(122) 1](https://github.com/user-attachments/assets/cbb52857-0e9e-430d-b42c-ba56db7dc908)
+
 
 #### Area report:
+![Screenshot_(123) 1](https://github.com/user-attachments/assets/7f93ef50-1fa4-4900-b029-2c004c398371)
 
 #### Power Report:
+![Screenshot_(124) 1](https://github.com/user-attachments/assets/46baa75d-53e2-407b-bd73-32213f94fe39)
 
 #### Timing Report: 
+![Screenshot_(125) 1](https://github.com/user-attachments/assets/75dc6b2d-bc94-430c-b6b0-639d9240ad31)
 
 #### Result: 
 
 The generic netlist has been created, and area, power, and timing reports have been tabulated and generated using Genus.
-
 
 
 
